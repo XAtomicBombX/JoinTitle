@@ -1,0 +1,11 @@
+{
+	"id": "join_title",
+	"version": "0.0.1",
+	"name": "Join Title",
+	"description": "Auto run title when player joins",
+	"author": "XFanblueX,FeiSaMa",
+	"link": "https://github.com/XAtomicBombX/JoinTitle",
+	"dependencies": {
+		"mcdreforged": ">=2.0.0-alpha.1"
+	}
+}
