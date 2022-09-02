@@ -10,14 +10,23 @@ default_config = {
     }
 }
 
-def load_config(server:PluginServerInterface):
+def show_title(server:ServerInterface,player,title,subtitle,actionbar):
+    server.execute(f'title {player} title "{title}"')
+    
+    if subtitle:
+        server.execute(f'title {player} subtitle "{subtitle}"')
+    
+    if actionbar:
+        server.execute(f'title {player} actionbar "{actionbar}"')
+
+def load_config(server:ServerInterface):
+    psi = server.as_plugin_server_interface()
     global config
-    config = server.load_config_simple("jointitle.json",default_config=default_config)
+    config = psi.load_config_simple("jointitle.json",default_config=default_config)
 
+def on_player_joined(server:ServerInterface,player,info):
+    show_title(server,player,config['title'],config['subtitle'],config['actionbar'])
 
-def on_player_join(server):
-    pass
-
-def on_load(server:PluginServerInterface,old):
+def on_load(server:ServerInterface,old):
+    # show_title(server,'@a','JoinTitle已加载',None,None)
     load_config(server)
-
