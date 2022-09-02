@@ -1,8 +1,8 @@
 {
 	"id": "join_title",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"name": "Join Title",
-	"description": "Auto run title when player joins",
+	"description": "Auto run /title when player joins",
 	"author": "XFanblueX,FeiSaMa",
 	"link": "https://github.com/XAtomicBombX/JoinTitle",
 	"dependencies": {
