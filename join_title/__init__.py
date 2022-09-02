@@ -1,6 +1,6 @@
 from mcdreforged.api.all import *
 
-default_config = {
+config = {
     'title': '§l§f欢迎回到§a服务器',
     'subtitle': '',
     'actionbar': '',
@@ -25,7 +25,7 @@ def load_config(server: ServerInterface):
     psi = server.as_plugin_server_interface()
     global config
     config = psi.load_config_simple("jointitle.json",
-                                    default_config=default_config)
+                                    default_config=config)
 
 
 def on_player_joined(server: ServerInterface, player, info):
@@ -33,17 +33,18 @@ def on_player_joined(server: ServerInterface, player, info):
                config['actionbar'])
 
 
-def write_config(server:PluginServerInterface,obj, string):
+def write_config(source:CommandSource,obj, string):
     """
-    写入字典 default_config
+    写入字典 config
     :param obj: 写入字典 default_config的键
     :param string: 写入字典 default_config的值
     :return: None
     """
-
-    global default_config
-    default_config[obj] = string
-
+    server = source.get_server()
+    psi = server.as_plugin_server_interface()
+    global config
+    config[obj] = string
+    psi.save_config_simple(config,"jointitle.json")
     return None
 
 
@@ -61,19 +62,19 @@ def register_command(server:PluginServerInterface):
                 Literal("title").
                 then(
                     GreedyText("input_message").
-                    runs(lambda ctx:write_config('title',ctx["input_message"]))
+                    runs(lambda src,ctx:write_config(src,'title',ctx["input_message"]))
                 )
             ). \
             then(
                 Literal("subtitle").then(
                     GreedyText("input_message").
-                    runs(lambda ctx:write_config('subtitle',ctx["input_message"]))
+                    runs(lambda src,ctx:write_config(src,'subtitle',ctx["input_message"]))
                 )
             ). \
             then(
                 Literal("actionbar").then(
                     GreedyText("input_message").
-                    runs(lambda ctx:write_config('actionbar',ctx["input_message"])
+                    runs(lambda src,ctx:write_config(src,'actionbar',ctx["input_message"])
                     )
                 )
             )
