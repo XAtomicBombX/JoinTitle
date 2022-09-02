@@ -1,5 +1,5 @@
 # JoinTitle
->当玩家加入服务器时自动运行/title命令  
+一个 **[MCDReforged](https://github.com/Fallen-Breath/MCDReforged)** 插件,会在玩家加入时执行/title命令
 ## 配置文件  
 可以结合 **[/title命令语法](https://minecraft.fandom.com/zh/wiki/%E5%91%BD%E4%BB%A4/title)** 和 **[Minecraft格式化代码](https://minecraft.fandom.com/zh/wiki/%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%BB%A3%E7%A0%81)** 来编辑此文件  
 
