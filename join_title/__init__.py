@@ -6,7 +6,8 @@ config = {
     'actionbar': '',
     'permissions': {
         'title': 0,
-        'set': 3
+        'set': 2,
+        'reload': 2
     }
 }
 
@@ -19,6 +20,10 @@ def show_title(server: ServerInterface, player, title, subtitle, actionbar):
 
     if actionbar:
         server.execute(f'title {player} actionbar "{actionbar}"')
+
+
+def register_help_msg(server: PluginServerInterface):
+    server.register_help_message("!!title", "显示JoinTitle帮助信息")
 
 
 def read_config(server: ServerInterface):
